@@ -1,0 +1,6 @@
+com/example/domain/Example.class
+com/example/ExampleApplication.class
+com/example/repository/ExampleRepository.class
+com/example/service/ExampleService.class
+com/example/domain/vo/ExampleVo.class
+com/example/controller/ExampleController.class
