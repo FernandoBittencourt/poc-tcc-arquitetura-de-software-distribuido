@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController(value = "/example")
+@RestController(value = "/normas")
 public class NormaController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class NormaController {
     }
 
     @GetMapping("/{id}")
-    public Norma getExample(@PathVariable Long id) {
+    public Norma obterNorma(@PathVariable Long id) {
         return service.obterNorma(id);
     }
 
