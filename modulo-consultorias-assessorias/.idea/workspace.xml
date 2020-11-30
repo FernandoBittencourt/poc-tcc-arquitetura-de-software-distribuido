@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3078fdc7-44aa-4107-b3dc-aab707ed9f9e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../modulo-gestao-do-processo-industrial/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../modulo-gestao-do-processo-industrial/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../modulo-normas-termos/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../modulo-normas-termos/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1kjl45Kk3kUk5mxU8XkMXWrqoox" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.github.fernandobittencourt.consultoria.repository" />
+      <recent name="com.github.fernandobittencourt.consultoria.service" />
+      <recent name="com.github.fernandobittencourt.consultoria.domain" />
+      <recent name="com.github.fernandobittencourt.processo.service.integration" />
+      <recent name="com.github.fernandobittencourt.processo.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ExampleApplication">
+    <configuration name="ExampleApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.ExampleApplication" />
+      <module name="spring-boilerplate" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="example [clean,install]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ExampleApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3078fdc7-44aa-4107-b3dc-aab707ed9f9e" name="Default Changelist" comment="" />
+      <created>1606221687496</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606221687496</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="131" y="31" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606223526289">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state x="131" y="31" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1213.693@67.27.1213.693" timestamp="1606223526289" />
+    <state x="481" y="80" width="374" height="585" key="#com.intellij.ide.util.MemberChooser" timestamp="1606498178352">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state x="481" y="80" width="374" height="585" key="#com.intellij.ide.util.MemberChooser/67.27.1213.693@67.27.1213.693" timestamp="1606498178352" />
+    <state x="67" y="297" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606495478055">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state x="67" y="297" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/67.27.1213.693@67.27.1213.693" timestamp="1606495478055" />
+    <state x="397" y="116" width="542" height="513" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606756927858">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state x="397" y="116" width="542" height="513" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1213.693@67.27.1213.693" timestamp="1606756927858" />
+    <state x="406" y="121" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606494999490">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state x="406" y="121" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1213.693@67.27.1213.693" timestamp="1606494999490" />
+    <state x="456" y="131" width="424" height="484" key="FileChooserDialogImpl" timestamp="1606753804456">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state x="456" y="131" width="424" height="484" key="FileChooserDialogImpl/67.27.1213.693@67.27.1213.693" timestamp="1606753804456" />
+    <state width="1167" height="160" key="GridCell.Tab.0.bottom" timestamp="1606228103825">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state width="1167" height="160" key="GridCell.Tab.0.bottom/67.27.1213.693@67.27.1213.693" timestamp="1606228103825" />
+    <state width="1167" height="160" key="GridCell.Tab.0.center" timestamp="1606228103825">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state width="1167" height="160" key="GridCell.Tab.0.center/67.27.1213.693@67.27.1213.693" timestamp="1606228103825" />
+    <state width="1167" height="160" key="GridCell.Tab.0.left" timestamp="1606228103824">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state width="1167" height="160" key="GridCell.Tab.0.left/67.27.1213.693@67.27.1213.693" timestamp="1606228103824" />
+    <state width="1167" height="160" key="GridCell.Tab.0.right" timestamp="1606228103825">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state width="1167" height="160" key="GridCell.Tab.0.right/67.27.1213.693@67.27.1213.693" timestamp="1606228103825" />
+    <state x="206" y="30" width="924" height="684" key="Maven.ArtifactSearchDialog" timestamp="1606227362704">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state x="206" y="30" width="924" height="684" key="Maven.ArtifactSearchDialog/67.27.1213.693@67.27.1213.693" timestamp="1606227362704" />
+    <state x="162" y="27" width="1012" height="693" key="SettingsEditor" timestamp="1606226139323">
+      <screen x="67" y="27" width="1213" height="693" />
+    </state>
+    <state x="162" y="27" width="1012" height="693" key="SettingsEditor/67.27.1213.693@67.27.1213.693" timestamp="1606226139323" />
+  </component>
+</project>

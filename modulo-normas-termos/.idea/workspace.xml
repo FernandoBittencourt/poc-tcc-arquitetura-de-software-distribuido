@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3078fdc7-44aa-4107-b3dc-aab707ed9f9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../modulo-gestao-do-processo-industrial/.idea/modulo-normas-termos.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../modulo-gestao-do-processo-industrial/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../modulo-gestao-do-processo-industrial/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/fernandobittencourt/norma/controller/NormaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/fernandobittencourt/norma/controller/NormaController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
