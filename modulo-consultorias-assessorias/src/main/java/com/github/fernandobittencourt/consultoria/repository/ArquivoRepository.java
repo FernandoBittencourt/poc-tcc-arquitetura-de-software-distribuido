@@ -1,7 +1,6 @@
 package com.github.fernandobittencourt.consultoria.repository;
 
 import com.github.fernandobittencourt.consultoria.domain.Arquivo;
-import com.github.fernandobittencourt.consultoria.domain.Consultoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ConsultoriaRepository extends JpaRepository<Consultoria, Long> {
+public interface ArquivoRepository extends JpaRepository<Arquivo, Long> {
 
+    @Query("SELECT a FROM Arquivo a WHERE a.processo.id = ?1")
+    List<Arquivo> findByProcesso(Long processo);
 }

@@ -15,7 +15,7 @@ public class ConsultoriaService {
     private INormaService normaService;
 
     @Autowired
-    private IArquivoService consultoriaService;
+    private IStorageService consultoriaService;
 
     @Autowired
     private ConsultoriaRepository repository;

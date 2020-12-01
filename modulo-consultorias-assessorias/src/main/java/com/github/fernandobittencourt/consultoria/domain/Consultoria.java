@@ -2,6 +2,7 @@ package com.github.fernandobittencourt.consultoria.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
@@ -10,6 +11,7 @@ public class Consultoria {
     @Id
     private Long id;
     private String nome;
+    @OneToMany
     private List<String> normas;
     private Boolean status;
 

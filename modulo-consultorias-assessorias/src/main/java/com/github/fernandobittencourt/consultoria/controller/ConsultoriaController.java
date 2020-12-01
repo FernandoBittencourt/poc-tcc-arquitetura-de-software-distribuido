@@ -4,6 +4,7 @@ import com.github.fernandobittencourt.consultoria.domain.Arquivo;
 import com.github.fernandobittencourt.consultoria.domain.Consultoria;
 import com.github.fernandobittencourt.consultoria.domain.Processo;
 import com.github.fernandobittencourt.consultoria.domain.vo.ConsultoriaDadosInclusaoVo;
+import com.github.fernandobittencourt.consultoria.service.ArquivoService;
 import com.github.fernandobittencourt.consultoria.service.ConsultoriaService;
 import com.github.fernandobittencourt.consultoria.service.ProcessoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class ConsultoriaController {
 
     @Autowired
     private ProcessoService processoService;
+
+    @Autowired
+    private ArquivoService arquivoService;
 
     @GetMapping
     public List<Consultoria> obterConsultorias() {
@@ -43,7 +47,7 @@ public class ConsultoriaController {
 
 
     @GetMapping("/{consultoria}/processos")
-    public Processo obterProcessos(@PathVariable Long consultoria, @PathVariable Long processo) {
+    public List<Processo> obterProcessos(@PathVariable Long consultoria, @PathVariable Long processo) {
         return processoService.obterProcessosPorConsultoria(consultoria);
     }
 
@@ -54,13 +58,11 @@ public class ConsultoriaController {
 
     @GetMapping("/consultorias/{consultoria}/processo/{processo}/documentos")
     public List<Arquivo> obterArquivos(@PathVariable Long consultoria, @PathVariable Long processo) {
-        //TODO: Implementar
-        return null;
+        return arquivoService.obterArquivos(consultoria, processo);
     }
 
     @PostMapping("/consultorias/{consultoria}/processo/{processo}/documentos")
     public Arquivo incluirArquivo(@PathVariable Long consultoria, @PathVariable Long processo) {
-        //TODO: Implementar
-        return null;
+        return arquivoService.incluirArquivo(consultoria, processo);
     }
 }

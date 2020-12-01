@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProcessoService {
@@ -16,11 +17,15 @@ public class ProcessoService {
     @Autowired
     private ProcessoRepository repository;
 
-    public Processo obterProcessosPorConsultoria(Long consultoria) {
-        //TODO: return repository.findByConsultoria(consultoria);
+    public List<Processo> obterProcessosPorConsultoria(Long consultoriaId) {
+        return repository.findByConsultoria(consultoriaId);
     }
 
-    public Processo obterProcesso(Long consultoria, Long processo) {
-        //TODO: return repository.findByConsultoriaAndId(consultoria, processo);
+    public Processo obterProcesso(Long consultoriaId, Long processoId) {
+        Processo processo = repository.findById(processoId).orElseThrow(RuntimeException::new);
+        if(processo.getConsultoria() == null || !processo.getConsultoria().getId().equals(consultoriaId)){
+            throw new RuntimeException();
+        }
+        return processo;
     }
 }

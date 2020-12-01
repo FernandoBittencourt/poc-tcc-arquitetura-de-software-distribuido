@@ -1,12 +1,13 @@
 package com.github.fernandobittencourt.consultoria.domain;
 
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 public class Arquivo {
     @Id
     private Long id;
-    private Consultoria consultoria;
+    @OneToOne
     private Processo processo;
     private String link;
     private Date data;
@@ -17,14 +18,6 @@ public class Arquivo {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Consultoria getConsultoria() {
-        return consultoria;
-    }
-
-    public void setConsultoria(Consultoria consultoria) {
-        this.consultoria = consultoria;
     }
 
     public Processo getProcesso() {

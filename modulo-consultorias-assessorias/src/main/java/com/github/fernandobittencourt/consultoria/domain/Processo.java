@@ -2,6 +2,7 @@ package com.github.fernandobittencourt.consultoria.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 @Entity
@@ -11,6 +12,7 @@ public class Processo {
     private Long id;
     private String dados;
     private Long origemId;
+    @OneToOne
     private Consultoria consultoria;
 
     public Processo() {
