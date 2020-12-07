@@ -1,5 +1,7 @@
 package com.github.fernandobittencourt.consultoria.service;
 
+import java.io.File;
+
 public interface IStorageService {
-    String armazenarArquivo();
+    void armazenarArquivo(File arquivo);
 }

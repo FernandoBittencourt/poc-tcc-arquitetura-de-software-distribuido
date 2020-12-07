@@ -1,20 +1,18 @@
 package com.github.fernandobittencourt.consultoria.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Consultoria {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @OneToMany
-    private List<String> normas;
+    @ManyToMany
+    private List<Norma> normas;
     private Boolean status;
-
 
     public Consultoria() {
     }
@@ -35,11 +33,11 @@ public class Consultoria {
         this.nome = nome;
     }
 
-    public List<String> getNormas() {
+    public List<Norma> getNormas() {
         return normas;
     }
 
-    public void setNormas(List<String> normas) {
+    public void setNormas(List<Norma> normas) {
         this.normas = normas;
     }
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController(value = "/normas")
+@RestController("/normas")
 public class NormaController {
 
     @Autowired

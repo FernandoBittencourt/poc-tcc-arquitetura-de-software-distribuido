@@ -1,16 +1,19 @@
 package com.github.fernandobittencourt.consultoria.domain;
 
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Arquivo {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+    private String name;
     @OneToOne
     private Processo processo;
-    private String link;
+    private String bucket;
     private Date data;
+    private String link;
 
     public Long getId() {
         return id;
@@ -42,5 +45,21 @@ public class Arquivo {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public String getBucket() {
+        return bucket;
+    }
+
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

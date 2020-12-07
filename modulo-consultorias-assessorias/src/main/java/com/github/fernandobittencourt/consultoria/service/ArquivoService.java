@@ -3,16 +3,22 @@ package com.github.fernandobittencourt.consultoria.service;
 import com.github.fernandobittencourt.consultoria.domain.Arquivo;
 import com.github.fernandobittencourt.consultoria.domain.Processo;
 import com.github.fernandobittencourt.consultoria.repository.ArquivoRepository;
-import com.github.fernandobittencourt.consultoria.repository.ConsultoriaRepository;
-import com.github.fernandobittencourt.consultoria.repository.ProcessoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 @Service
 public class ArquivoService {
+
+    @Value("${aws.s3.bucket}")
+    private String bucket;
 
     @Autowired
     private ArquivoRepository repository;
@@ -29,17 +35,34 @@ public class ArquivoService {
         return repository.findByProcesso(processoId);
     }
 
-    public Arquivo incluirArquivo(Long consultoriaId, Long processoId) {
+    public Arquivo incluirArquivo(Long consultoriaId, Long processoId, MultipartFile dados) {
         Processo processo = processoService.obterProcesso(consultoriaId, processoId);
         if(processo == null) {
             throw new RuntimeException();
         }
-        String link = storageService.armazenarArquivo();
+        try {
+            File file = armazenaLocalmente(dados);
+            storageService.armazenarArquivo(file);
+        }catch (Exception e) {
+            throw new RuntimeException();
+        }
         Arquivo arquivo = new Arquivo();
+        arquivo.setName(dados.getOriginalFilename());
         arquivo.setData(new Date());
         arquivo.setProcesso(processo);
-        arquivo.setLink(link);
+        arquivo.setBucket(bucket);
+        arquivo.setLink("http://" + bucket + ".s3.amazonaws.com/" + dados.getOriginalFilename());
         repository.save(arquivo);
-        return null;
+
+        return arquivo;
+    }
+
+    private File armazenaLocalmente(MultipartFile file) throws IOException {
+        File convFile = new File(file.getOriginalFilename());
+        convFile.createNewFile();
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
+        return convFile;
     }
 }

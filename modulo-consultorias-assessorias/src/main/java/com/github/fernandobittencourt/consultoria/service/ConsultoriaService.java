@@ -1,6 +1,7 @@
 package com.github.fernandobittencourt.consultoria.service;
 
 import com.github.fernandobittencourt.consultoria.domain.Consultoria;
+import com.github.fernandobittencourt.consultoria.domain.Norma;
 import com.github.fernandobittencourt.consultoria.domain.vo.ConsultoriaDadosInclusaoVo;
 import com.github.fernandobittencourt.consultoria.repository.ConsultoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,10 @@ public class ConsultoriaService {
     }
 
     public Consultoria criarConsultoria(ConsultoriaDadosInclusaoVo dados) {
+        List<Norma> normas = normaService.obterNormas(dados.getNormas());
         Consultoria consultoria = new Consultoria();
         consultoria.setNome(dados.getNome());
-        consultoria.setNormas(dados.getNormas());
+        consultoria.setNormas(normas);
         consultoria.setStatus(dados.getStatus());
         return repository.save(consultoria);
     }
@@ -42,9 +44,10 @@ public class ConsultoriaService {
 
     public Consultoria atualizarConsultoria(Long id, ConsultoriaDadosInclusaoVo dados) {
         validarProcesso(dados);
+        List<Norma> normas = normaService.obterNormas(dados.getNormas());
         Consultoria consultoria = repository.findById(id).orElseThrow(RuntimeException::new); //TODO: Criar exception especifica
         consultoria.setNome(dados.getNome());
-        consultoria.setNormas(dados.getNormas());
+        consultoria.setNormas(normas);
         consultoria.setStatus(dados.getStatus());
         return repository.save(consultoria);
     }
