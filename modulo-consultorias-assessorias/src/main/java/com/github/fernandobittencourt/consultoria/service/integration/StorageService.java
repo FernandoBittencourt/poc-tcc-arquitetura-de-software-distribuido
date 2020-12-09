@@ -5,6 +5,7 @@ import com.amazonaws.SdkClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -26,6 +27,9 @@ public class StorageService implements IStorageService {
     @Value("${aws.s3.region}")
     private String region;
 
+    @Value("${aws.s3.endpoint}")
+    private String s3Endpoint;
+
     @Value("${aws.s3.bucket}")
     private String bucketName;
 
@@ -37,19 +41,11 @@ public class StorageService implements IStorageService {
 
     @Override
     public void armazenarArquivo(File arquivo) {
-        AWSCredentials credentials = new BasicAWSCredentials(awsAccessKey, awsSecretKey);
-        Regions clientRegion = Regions.fromName(region);
-        String fileName = arquivo.getName();
-
         try {
-            AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-                    .withRegion(clientRegion)
-                    .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                    .build();
-
+            AmazonS3 s3Client = criarClienteS3();
+            String fileName = arquivo.getName();
             logger.info("O arquivo '"+fileName+"' será inserido no bucket '" + bucketName+"'");
             s3Client.putObject(bucketName, fileName, arquivo);
-
         } catch (AmazonServiceException e) {
             // The call was transmitted successfully, but Amazon S3 couldn't process
             // it, so it returned an error response.
@@ -61,5 +57,21 @@ public class StorageService implements IStorageService {
             logger.error(e.getMessage());
             throw new RuntimeException();
         }
+    }
+
+    private AmazonS3 criarClienteS3() {
+        AWSCredentials credentials = new BasicAWSCredentials(awsAccessKey, awsSecretKey);
+        if (s3Endpoint != null) {
+            AwsClientBuilder.EndpointConfiguration endpoint = new AwsClientBuilder.EndpointConfiguration(s3Endpoint, Regions.fromName(region).getName());
+            return AmazonS3ClientBuilder.standard()
+                    .withEndpointConfiguration(endpoint)
+                    .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                    .build();
+        }
+        Regions clientRegion = Regions.fromName(region);
+        return AmazonS3ClientBuilder.standard()
+                .withRegion(clientRegion)
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
     }
 }

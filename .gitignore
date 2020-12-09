@@ -142,3 +142,6 @@ hs_err_pid*
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,visualstudiocode
+modulo-consultorias-assessorias/target
+modulo-normas-termos/target
+modulo-gestao-do-processo-industrial/target
