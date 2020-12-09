@@ -145,9 +145,12 @@ hs_err_pid*
 modulo-consultorias-assessorias/target
 modulo-consultorias-assessorias/.idea
 modulo-consultorias-assessorias/processo.iml
+modulo-consultorias-assessorias/src/main/resources/application.properties
 modulo-normas-termos/target
 modulo-normas-termos/.idea
 modulo-normas-termos/processo.iml
+modulo-normas-termos/src/main/resources/application.properties
 modulo-gestao-do-processo-industrial/target
 modulo-gestao-do-processo-industrial/.idea
 modulo-gestao-do-processo-industrial/processo.iml
+modulo-gestao-do-processo-industrial/src/main/resources/application.properties
