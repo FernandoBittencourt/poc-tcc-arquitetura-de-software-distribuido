@@ -143,5 +143,11 @@ hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,visualstudiocode
 modulo-consultorias-assessorias/target
+modulo-consultorias-assessorias/.idea
+modulo-consultorias-assessorias/processo.iml
 modulo-normas-termos/target
+modulo-normas-termos/.idea
+modulo-normas-termos/processo.iml
 modulo-gestao-do-processo-industrial/target
+modulo-gestao-do-processo-industrial/.idea
+modulo-gestao-do-processo-industrial/processo.iml
