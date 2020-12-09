@@ -41,28 +41,21 @@ public class ArquivoService {
             throw new RuntimeException();
         }
         try {
-            File file = armazenaLocalmente(dados);
-            storageService.armazenarArquivo(file);
-        }catch (Exception e) {
+            String link = storageService.armazenarArquivo(dados);
+            return criarArquivo(dados, processo, link);
+        } catch (Exception e) {
             throw new RuntimeException();
         }
+    }
+
+    private Arquivo criarArquivo(MultipartFile dados, Processo processo, String link) {
         Arquivo arquivo = new Arquivo();
         arquivo.setName(dados.getOriginalFilename());
         arquivo.setData(new Date());
         arquivo.setProcesso(processo);
         arquivo.setBucket(bucket);
-        arquivo.setLink("http://" + bucket + ".s3.amazonaws.com/" + dados.getOriginalFilename());
+        arquivo.setLink(link);
         repository.save(arquivo);
-
         return arquivo;
-    }
-
-    private File armazenaLocalmente(MultipartFile file) throws IOException {
-        File convFile = new File(file.getOriginalFilename());
-        convFile.createNewFile();
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
-        return convFile;
     }
 }

@@ -16,9 +16,6 @@ public class ConsultoriaService {
     private INormaService normaService;
 
     @Autowired
-    private IStorageService consultoriaService;
-
-    @Autowired
     private ConsultoriaRepository repository;
 
     public List<Consultoria> obterConsultorias() {

@@ -1,7 +1,7 @@
 package com.github.fernandobittencourt.consultoria.service;
 
-import java.io.File;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface IStorageService {
-    void armazenarArquivo(File arquivo);
+    String armazenarArquivo(MultipartFile arquivo);
 }
