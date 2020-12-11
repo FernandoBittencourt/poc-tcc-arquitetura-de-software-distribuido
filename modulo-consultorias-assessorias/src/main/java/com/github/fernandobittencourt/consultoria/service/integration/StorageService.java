@@ -42,10 +42,10 @@ public class StorageService implements IStorageService {
     @Override
     public String armazenarArquivo(MultipartFile arquivo) {
         try {
-            AmazonS3 s3Client = criarClienteS3();
+            AmazonS3 amazonS3 = criarClienteS3();
             String fileName = arquivo.getName();
             logger.info("O arquivo '"+fileName+"' será inserido no bucket '" + bucketName+"'");
-            s3Client.putObject(new PutObjectRequest(bucketName,
+            amazonS3.putObject(new PutObjectRequest(bucketName,
                     arquivo.getOriginalFilename(), arquivo.getInputStream(),null)
                     .withCannedAcl(CannedAccessControlList.PublicRead));
             return "http://s3.amazonaws.com/"+bucketName+"/"+arquivo.getOriginalFilename();
@@ -68,9 +68,9 @@ public class StorageService implements IStorageService {
 
     private AmazonS3 criarClienteS3() {
         AWSCredentials credentials = new BasicAWSCredentials(awsAccessKey, awsSecretKey);
-        Regions clientRegion = Regions.fromName(region);
+        Regions s3Region = Regions.fromName(region);
         return AmazonS3ClientBuilder.standard()
-                .withRegion(clientRegion)
+                .withRegion(s3Region)
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .build();
     }

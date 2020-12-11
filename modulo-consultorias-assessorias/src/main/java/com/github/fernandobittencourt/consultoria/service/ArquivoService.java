@@ -26,7 +26,11 @@ public class ArquivoService {
     @Autowired
     private ProcessoService processoService;
 
-    @Autowired IStorageService storageService;
+    @Autowired
+    private IStorageService storageService;
+
+    @Autowired
+    private IQueueService queueService;
 
     public List<Arquivo> obterArquivos(Long consultoriaId, Long processoId) {
         if(processoService.obterProcesso(consultoriaId, processoId) == null) {
@@ -42,10 +46,13 @@ public class ArquivoService {
         }
         try {
             String link = storageService.armazenarArquivo(dados);
-            return criarArquivo(dados, processo, link);
+            Arquivo arquivo= criarArquivo(dados, processo, link);
+            queueService.inserirMensagem(link);
+            return arquivo;
         } catch (Exception e) {
             throw new RuntimeException();
         }
+
     }
 
     private Arquivo criarArquivo(MultipartFile dados, Processo processo, String link) {
