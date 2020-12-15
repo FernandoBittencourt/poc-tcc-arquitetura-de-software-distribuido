@@ -9,15 +9,21 @@ import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.amazonaws.services.sqs.model.MessageAttributeValue;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.github.fernandobittencourt.consultoria.service.IQueueService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class QueueService implements IQueueService {
 
-    @Value("${aws.sqs.url}")
-    private String url;
+    private static final Logger logger = LoggerFactory.getLogger(QueueService.class);
+
+    @Value("${aws.sqs.endpoint}")
+    private String endpoint;
 
     @Value("${aws.sqs.region}")
     private String region;
@@ -28,6 +34,17 @@ public class QueueService implements IQueueService {
     @Value("${aws.secret.key}")
     private String awsSecretKey;
 
+    //@Autowired
+    //private QueueMessagingTemplate queueMessagingTemplate;
+
+    /*public void inserirMensagem(String mensagem) {
+        try {
+            queueMessagingTemplate.send(endpoint, MessageBuilder.withPayload(mensagem).build());
+            logger.info("Mensagem enviada com sucesso: " + mensagem);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+    }*/
 
     public void inserirMensagem(String mensagem){
         AmazonSQS amazonSqs = criarClienteSqs();
@@ -37,7 +54,7 @@ public class QueueService implements IQueueService {
                 .withDataType("String"));
 
         SendMessageRequest sendMessageStandardQueue = new SendMessageRequest()
-                .withQueueUrl(url)
+                .withQueueUrl(endpoint)
                 .withMessageBody(mensagem)
                 .withDelaySeconds(30)
                 .withMessageAttributes(messageAttributes);

@@ -1,11 +1,9 @@
 package com.github.fernandobittencourt.processo.repository;
 
-import com.github.fernandobittencourt.processo.domain.Processo;
+import com.github.fernandobittencourt.processo.domain.Relatorio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface ProcessoRepository extends JpaRepository<Processo, Long> {
+public interface RelatorioRepository extends JpaRepository<Relatorio, Long> {
 }

@@ -1,21 +1,25 @@
 package com.github.fernandobittencourt.consultoria.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fernandobittencourt.consultoria.domain.Arquivo;
 import com.github.fernandobittencourt.consultoria.domain.Processo;
+import com.github.fernandobittencourt.consultoria.domain.vo.RelatorioVo;
 import com.github.fernandobittencourt.consultoria.repository.ArquivoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 @Service
 public class ArquivoService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ArquivoService.class);
 
     @Value("${aws.s3.bucket}")
     private String bucket;
@@ -46,13 +50,23 @@ public class ArquivoService {
         }
         try {
             String link = storageService.armazenarArquivo(dados);
-            Arquivo arquivo= criarArquivo(dados, processo, link);
-            queueService.inserirMensagem(link);
+            Arquivo arquivo = criarArquivo(dados, processo, link);
+            queueService.inserirMensagem(criarMensagem(arquivo));
             return arquivo;
         } catch (Exception e) {
             throw new RuntimeException();
         }
+    }
 
+    private String criarMensagem(Arquivo arquivo){
+        try {
+            RelatorioVo relatorioVo = new RelatorioVo(arquivo);
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(relatorioVo);
+        } catch (JsonProcessingException e) {
+            logger.error(e.getMessage());
+            throw new RuntimeException();
+        }
     }
 
     private Arquivo criarArquivo(MultipartFile dados, Processo processo, String link) {

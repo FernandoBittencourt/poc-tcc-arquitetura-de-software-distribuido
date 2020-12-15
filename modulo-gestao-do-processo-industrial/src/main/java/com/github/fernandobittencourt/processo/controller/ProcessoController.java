@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController(value = "/processos")
+@RestController
 public class ProcessoController {
 
     @Autowired
     private ProcessoService service;
 
-    @GetMapping
+    @GetMapping("/processos")
     public List<Processo> obterProcessos() {
         return service.obterProcessos();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/processos/{id}")
     public Processo obterProcesso(@PathVariable Long id) {
         return service.obterProcesso(id);
     }
 
-    @PostMapping
+    @PostMapping("/processos")
     public Processo criarProcesso(@RequestBody ProcessoDadosInclusaoVo dados) {
         return service.criarProcesso(dados);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/processos/{id}")
     public Processo atualizarProcesso(@PathVariable Long id, @RequestBody ProcessoDadosInclusaoVo dados) {
         return service.atualizarProcesso(id, dados);
     }

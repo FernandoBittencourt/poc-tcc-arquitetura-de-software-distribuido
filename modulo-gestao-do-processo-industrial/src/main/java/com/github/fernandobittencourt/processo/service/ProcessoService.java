@@ -3,11 +3,11 @@ package com.github.fernandobittencourt.processo.service;
 import com.github.fernandobittencourt.processo.domain.Processo;
 import com.github.fernandobittencourt.processo.domain.vo.ProcessoDadosInclusaoVo;
 import com.github.fernandobittencourt.processo.repository.ProcessoRepository;
+import com.github.fernandobittencourt.processo.repository.RelatorioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProcessoService {
@@ -52,5 +52,4 @@ public class ProcessoService {
         processo.setDados(dados.getDados());
         return repository.save(processo);
     }
-
 }

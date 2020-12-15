@@ -1,18 +1,19 @@
 package com.github.fernandobittencourt.processo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Processo {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private Long area;
     private String dados;
     private Long consultoria;
-    private List<String> relatorios;
+    @OneToMany
+    private List<Relatorio> relatorios;
 
     public Processo() {
     }
@@ -49,11 +50,11 @@ public class Processo {
         this.consultoria = consultoria;
     }
 
-    public List<String> getRelatorios() {
+    public List<Relatorio> getRelatorios() {
         return relatorios;
     }
 
-    public void setRelatorios(List<String> relatorios) {
+    public void setRelatorios(List<Relatorio> relatorios) {
         this.relatorios = relatorios;
     }
 }
