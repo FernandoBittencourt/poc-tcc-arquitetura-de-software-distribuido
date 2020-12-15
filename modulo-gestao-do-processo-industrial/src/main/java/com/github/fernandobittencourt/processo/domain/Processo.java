@@ -7,13 +7,11 @@ import java.util.List;
 public class Processo {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long area;
     private String dados;
     private Long consultoria;
-    @OneToMany
-    private List<Relatorio> relatorios;
 
     public Processo() {
     }
@@ -50,11 +48,4 @@ public class Processo {
         this.consultoria = consultoria;
     }
 
-    public List<Relatorio> getRelatorios() {
-        return relatorios;
-    }
-
-    public void setRelatorios(List<Relatorio> relatorios) {
-        this.relatorios = relatorios;
-    }
 }

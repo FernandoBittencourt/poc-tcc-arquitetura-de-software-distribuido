@@ -1,15 +1,21 @@
 package com.github.fernandobittencourt.processo.service;
 
 import com.github.fernandobittencourt.processo.domain.Processo;
+import com.github.fernandobittencourt.processo.domain.Relatorio;
 import com.github.fernandobittencourt.processo.domain.vo.ProcessoDadosInclusaoVo;
+import com.github.fernandobittencourt.processo.domain.vo.ProcessoVo;
 import com.github.fernandobittencourt.processo.repository.ProcessoRepository;
 import com.github.fernandobittencourt.processo.repository.RelatorioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ProcessoService {
 
     @Autowired
@@ -21,35 +27,45 @@ public class ProcessoService {
     @Autowired
     private ProcessoRepository repository;
 
-    public List<Processo> obterProcessos() {
-        return repository.findAll();
+    @Autowired
+    private RelatorioRepository relatorioRepository;
+
+    public List<ProcessoVo> obterProcessos() {
+        return repository.findAll().stream()
+                .map(this::obterProcessoVo)
+                .collect(Collectors.toList());
     }
 
-    public Processo obterProcesso(Long id) {
-        return repository.findById(id).orElse(null);
+    private ProcessoVo obterProcessoVo(Processo processo) {
+        List<Relatorio> relatorios = relatorioRepository.findByProcesso(processo.getId());
+        return new ProcessoVo(processo, relatorios);
     }
 
-    public Processo criarProcesso(ProcessoDadosInclusaoVo dados) {
+    public ProcessoVo obterProcesso(Long id) {
+        return repository.findById(id)
+                .map(this::obterProcessoVo)
+                .orElse(null);
+    }
+
+    public ProcessoVo criarProcesso(ProcessoDadosInclusaoVo dados) {
         //TODO: propagar atualização para consultoria
-        validarProcesso(dados);
         Processo processo = new Processo();
         processo.setArea(dados.getArea());
         processo.setConsultoria(dados.getConsultoria());
         processo.setDados(dados.getDados());
-        return repository.save(processo);
+        processo = repository.save(processo);
+        return new ProcessoVo(processo);
     }
 
-    private void validarProcesso(ProcessoDadosInclusaoVo dados) {
-        //TODO: Validar consultoria
-    }
 
-    public Processo atualizarProcesso(Long id, ProcessoDadosInclusaoVo dados) {
+    public ProcessoVo atualizarProcesso(Long id, ProcessoDadosInclusaoVo dados) {
         //TODO: propagar atualização para consultoria
-        validarProcesso(dados);
         Processo processo = repository.findById(id).orElseThrow(RuntimeException::new); //TODO: Criar exception especifica
         processo.setArea(dados.getArea());
         processo.setConsultoria(dados.getConsultoria());
         processo.setDados(dados.getDados());
-        return repository.save(processo);
+        processo = repository.save(processo);
+        List<Relatorio> relatorios = relatorioRepository.findByProcesso(processo.getId());
+        return new ProcessoVo(processo, relatorios);
     }
 }

@@ -1,10 +1,6 @@
 package com.github.fernandobittencourt.processo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
 public class Relatorio {
@@ -13,6 +9,8 @@ public class Relatorio {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String link;
+    @ManyToOne
+    private Processo processo;
 
     public Relatorio() {
     }
@@ -31,5 +29,13 @@ public class Relatorio {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public Processo getProcesso() {
+        return processo;
+    }
+
+    public void setProcesso(Processo processo) {
+        this.processo = processo;
     }
 }

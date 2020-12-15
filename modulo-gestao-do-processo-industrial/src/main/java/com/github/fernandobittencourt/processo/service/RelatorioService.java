@@ -8,7 +8,9 @@ import com.github.fernandobittencourt.processo.repository.ProcessoRepository;
 import com.github.fernandobittencourt.processo.repository.RelatorioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,10 +33,9 @@ public class RelatorioService {
         Processo processo = processoRepository.findById(processoId)
                 .orElseThrow(RuntimeException::new);
         Relatorio relatorio = new Relatorio();
+        relatorio.setProcesso(processo);
         relatorio.setLink(relatorioVo.getLink());
         relatorio = relatorioRepository.save(relatorio);
-        processo.getRelatorios().add(relatorio);
-        processoRepository.save(processo);
         return relatorio;
     }
 
