@@ -35,14 +35,9 @@ public class ConsultoriaService {
         return repository.save(consultoria);
     }
 
-    private void validarProcesso(ConsultoriaDadosInclusaoVo dados) {
-        //TODO: Validar consultoria
-    }
-
     public Consultoria atualizarConsultoria(Long id, ConsultoriaDadosInclusaoVo dados) {
-        validarProcesso(dados);
         List<Norma> normas = normaService.obterNormas(dados.getNormas());
-        Consultoria consultoria = repository.findById(id).orElseThrow(RuntimeException::new); //TODO: Criar exception especifica
+        Consultoria consultoria = repository.findById(id).orElseThrow(RuntimeException::new);
         consultoria.setNome(dados.getNome());
         consultoria.setNormas(normas);
         consultoria.setStatus(dados.getStatus());

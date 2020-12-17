@@ -14,8 +14,6 @@ public class Norma {
 
     private String codigo;
 
-    private Long externoId;
-
     public Long getId() {
         return id;
     }
@@ -30,13 +28,5 @@ public class Norma {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
-
-    public Long getExternoId() {
-        return externoId;
-    }
-
-    public void setExternoId(Long externoId) {
-        this.externoId = externoId;
     }
 }
