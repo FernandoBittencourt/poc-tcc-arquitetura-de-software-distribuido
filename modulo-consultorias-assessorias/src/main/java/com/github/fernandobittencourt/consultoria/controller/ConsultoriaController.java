@@ -53,12 +53,12 @@ public class ConsultoriaController {
     }
 
     @PostMapping("/consultorias/{consultoria}/processos")
-    public Processo incluirProcesso(@PathVariable Long consultoria, ProcessoDadosInclusaoVo dados) {
+    public Processo incluirProcesso(@PathVariable Long consultoria, @RequestBody ProcessoDadosInclusaoVo dados) {
         return processoService.incluirProcesso(consultoria, dados);
     }
 
     @PutMapping("/consultorias/{consultoria}/processos/{processo}")
-    public Processo atualizarProcesso(@PathVariable Long consultoria, Long processo, ProcessoDadosInclusaoVo dados) {
+    public Processo atualizarProcesso(@PathVariable Long consultoria, Long processo, @RequestBody ProcessoDadosInclusaoVo dados) {
         return processoService.atualizarProcesso(consultoria, processo, dados);
     }
 
