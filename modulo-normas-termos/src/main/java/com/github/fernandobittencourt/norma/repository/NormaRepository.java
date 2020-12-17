@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface NormaRepository extends JpaRepository<Norma, Long> {
     List<Norma> findByCodigo(String codigo);
+
+    List<Norma> findByCodigoAndVersao(String codigo, String versao);
 }

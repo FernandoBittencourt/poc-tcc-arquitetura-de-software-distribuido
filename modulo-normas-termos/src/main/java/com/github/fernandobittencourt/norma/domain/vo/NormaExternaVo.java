@@ -1,34 +1,11 @@
-package com.github.fernandobittencourt.norma.domain;
+package com.github.fernandobittencourt.norma.domain.vo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Norma {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class NormaExternaVo {
     private String codigo;
 
     private String versao;
 
     private String conteudo;
-
-
-    public Norma() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCodigo() {
         return codigo;

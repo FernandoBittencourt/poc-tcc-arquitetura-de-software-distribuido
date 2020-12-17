@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController("/normas")
+@RestController
 public class NormaController {
 
     @Autowired
     private NormaService service;
 
-    @GetMapping
+    @GetMapping("/normas")
     public List<Norma> obterNormas(@RequestParam String codigo) {
         return service.obterNormas(codigo);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/normas/{id}")
     public Norma obterNorma(@PathVariable Long id) {
         return service.obterNorma(id);
     }
