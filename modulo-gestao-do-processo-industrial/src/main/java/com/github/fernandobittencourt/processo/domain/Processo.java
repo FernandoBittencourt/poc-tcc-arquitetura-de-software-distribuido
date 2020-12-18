@@ -11,6 +11,7 @@ public class Processo {
     private Long id;
     private Long area;
     private String dados;
+    private String norma;
     private Long consultoria;
 
     public Processo() {
@@ -48,4 +49,11 @@ public class Processo {
         this.consultoria = consultoria;
     }
 
+    public String getNorma() {
+        return norma;
+    }
+
+    public void setNorma(String norma) {
+        this.norma = norma;
+    }
 }

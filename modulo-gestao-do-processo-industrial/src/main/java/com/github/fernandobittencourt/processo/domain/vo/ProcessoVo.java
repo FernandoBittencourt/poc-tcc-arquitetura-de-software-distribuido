@@ -3,7 +3,6 @@ package com.github.fernandobittencourt.processo.domain.vo;
 import com.github.fernandobittencourt.processo.domain.Processo;
 import com.github.fernandobittencourt.processo.domain.Relatorio;
 
-import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +12,7 @@ public class ProcessoVo {
     private Long area;
     private String dados;
     private Long consultoria;
+    private String norma;
     private List<String> relatorios;
 
     public ProcessoVo(Processo processo) {
@@ -71,5 +71,13 @@ public class ProcessoVo {
 
     public void setRelatorios(List<String> relatorios) {
         this.relatorios = relatorios;
+    }
+
+    public String getNorma() {
+        return norma;
+    }
+
+    public void setNorma(String norma) {
+        this.norma = norma;
     }
 }

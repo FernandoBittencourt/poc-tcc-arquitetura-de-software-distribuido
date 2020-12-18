@@ -34,12 +34,15 @@ public class ProcessoService {
     }
 
     public Processo incluirProcesso(Long consultoriaId, ProcessoDadosInclusaoVo dados) {
-        Consultoria consultoria = consultoriaRepository.findById(consultoriaId).orElseThrow(RuntimeException::new);
-        Processo processo = new Processo();
-        processo.setDados(dados.getDados());
-        processo.setOrigemId(dados.getOrigemId());
-        processo.setConsultoria(consultoria);
-        return repository.save(processo);
+        if(repository.findById(dados.getOrigemId()).isEmpty()) {
+            Consultoria consultoria = consultoriaRepository.findById(consultoriaId).orElseThrow(RuntimeException::new);
+            Processo processo = new Processo();
+            processo.setDados(dados.getDados());
+            processo.setOrigemId(dados.getOrigemId());
+            processo.setConsultoria(consultoria);
+            return repository.save(processo);
+        }
+        throw new RuntimeException();
     }
 
     public Processo atualizarProcesso(Long consultoriaId, Long processoId, ProcessoDadosInclusaoVo dados) {

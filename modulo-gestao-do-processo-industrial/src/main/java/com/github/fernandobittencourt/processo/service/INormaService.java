@@ -1,5 +1,7 @@
 package com.github.fernandobittencourt.processo.service;
 
-public interface INormaService {
+import com.github.fernandobittencourt.processo.domain.Norma;
 
+public interface INormaService {
+    Norma obterNorma(String codigo);
 }

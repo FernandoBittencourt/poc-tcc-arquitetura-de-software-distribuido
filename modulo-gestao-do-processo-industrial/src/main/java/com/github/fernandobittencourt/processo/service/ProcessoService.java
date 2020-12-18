@@ -1,7 +1,10 @@
 package com.github.fernandobittencourt.processo.service;
 
+import com.github.fernandobittencourt.processo.domain.Norma;
 import com.github.fernandobittencourt.processo.domain.Processo;
 import com.github.fernandobittencourt.processo.domain.Relatorio;
+import com.github.fernandobittencourt.processo.domain.vo.ConsultoriaNormaVo;
+import com.github.fernandobittencourt.processo.domain.vo.ConsultoriaVo;
 import com.github.fernandobittencourt.processo.domain.vo.ProcessoDadosInclusaoVo;
 import com.github.fernandobittencourt.processo.domain.vo.ProcessoVo;
 import com.github.fernandobittencourt.processo.repository.ProcessoRepository;
@@ -36,35 +39,64 @@ public class ProcessoService {
                 .collect(Collectors.toList());
     }
 
-    private ProcessoVo obterProcessoVo(Processo processo) {
-        List<Relatorio> relatorios = relatorioRepository.findByProcesso(processo.getId());
-        return new ProcessoVo(processo, relatorios);
-    }
-
     public ProcessoVo obterProcesso(Long id) {
         return repository.findById(id)
                 .map(this::obterProcessoVo)
                 .orElse(null);
     }
 
+    void validarProcesso(ProcessoDadosInclusaoVo dados){
+        Norma norma = normaService.obterNorma(dados.getNorma());
+        ConsultoriaVo consultoria = consultoriaService.obterConsultoria(dados.getConsultoria());
+        if(dados.getConsultoria() != null && consultoria == null) {
+            throw new RuntimeException();
+        }
+        if(norma == null || consultoria.getNormas() == null){
+            throw new RuntimeException();
+        }
+        List<String> consultoriaNormas = consultoria.getNormas().stream()
+                .map(ConsultoriaNormaVo::getCodigo)
+                .collect(Collectors.toList());
+        if(consultoria.getNormas().isEmpty() || !consultoriaNormas.contains(norma.getCodigo())){
+            throw new RuntimeException();
+        }
+    }
+
     public ProcessoVo criarProcesso(ProcessoDadosInclusaoVo dados) {
-        //TODO: propagar atualização para consultoria
+        validarProcesso(dados);
         Processo processo = new Processo();
         processo.setArea(dados.getArea());
         processo.setConsultoria(dados.getConsultoria());
         processo.setDados(dados.getDados());
         processo = repository.save(processo);
+        if(dados.getConsultoria() != null) {
+            consultoriaService.propagarProcesso(processo);
+        }
         return new ProcessoVo(processo);
     }
 
-
     public ProcessoVo atualizarProcesso(Long id, ProcessoDadosInclusaoVo dados) {
-        //TODO: propagar atualização para consultoria
-        Processo processo = repository.findById(id).orElseThrow(RuntimeException::new); //TODO: Criar exception especifica
+        if(dados.getConsultoria() == null) {
+            throw new RuntimeException();
+        }
+        validarProcesso(dados);
+        Processo processo = repository.findById(id).orElseThrow(RuntimeException::new);
+        boolean associadoConsultoria = processo.getConsultoria() != null;
+
         processo.setArea(dados.getArea());
         processo.setConsultoria(dados.getConsultoria());
         processo.setDados(dados.getDados());
         processo = repository.save(processo);
+
+        if(associadoConsultoria) {
+            consultoriaService.atualizarProcesso(processo);
+        } else {
+            consultoriaService.propagarProcesso(processo);
+        }
+        return obterProcessoVo(processo);
+    }
+
+    private ProcessoVo obterProcessoVo(Processo processo) {
         List<Relatorio> relatorios = relatorioRepository.findByProcesso(processo.getId());
         return new ProcessoVo(processo, relatorios);
     }

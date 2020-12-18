@@ -1,4 +1,4 @@
-package com.github.fernandobittencourt.processo;
+package com.github.fernandobittencourt.processo.configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
