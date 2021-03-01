@@ -11,7 +11,7 @@ public class RelatorioVo {
     }
 
     public RelatorioVo(Arquivo arquivo) {
-        this.processo = arquivo.getProcesso().getId();
+        this.processo = arquivo.getProcesso().getOrigemId();
         this.link = arquivo.getLink();
     }
 
